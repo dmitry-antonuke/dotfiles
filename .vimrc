@@ -82,10 +82,10 @@
     set signcolumn=yes
 " }}}
 " Cursor line {{{
-    set cursorline
+    "set cursorline
     highlight CursorLine cterm=NONE ctermbg=32 ctermfg=white
-    autocmd InsertLeave,WinEnter * set cursorline
-    autocmd InsertEnter,WinLeave * set nocursorline
+    "autocmd InsertLeave,WinEnter * set cursorline
+    "autocmd InsertEnter,WinLeave * set nocursorline
 " }}}
 " Mouse {{{
     set ttyfast
