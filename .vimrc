@@ -223,6 +223,22 @@
     Plug 'haya14busa/incsearch-fuzzy.vim'
     Plug 'haya14busa/incsearch-easymotion.vim'
     " {{{2
+    nmap s <Plug>(easymotion-overwin-f)
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+
+    let g:incsearch#auto_nohlsearch = 1
+    map n  <Plug>(incsearch-nohl-n)
+    map N  <Plug>(incsearch-nohl-N)
+    map *  <Plug>(incsearch-nohl-*)
+    map #  <Plug>(incsearch-nohl-#)
+    map g* <Plug>(incsearch-nohl-g*)
+    map g# <Plug>(incsearch-nohl-g#)
+
+		map /  <Plug>(incsearch-forward)
+		map ?  <Plug>(incsearch-backward)
+		map g/ <Plug>(incsearch-stay)
+
     function! s:config_easyfuzzymotion(...) abort
       return extend(copy({
       \   'converters': [incsearch#config#fuzzy#converter()],
