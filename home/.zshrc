@@ -51,7 +51,8 @@ fi
 if [[ -s ~/.sdkman/bin/sdkman-init.sh ]]
 then
   export SDKMAN_DIR="$HOME/.sdkman"
-#  source ~/.sdkman/bin/sdkman-init.sh
+  # Load sdkman only if it's called
+  alias -g sdk='unalias sdk; source $SDKMAN_DIR/bin/sdkman-init.sh; sdk'
 fi
 
 #POWERLEVEL9K_MODE='nerdfont-complete'
