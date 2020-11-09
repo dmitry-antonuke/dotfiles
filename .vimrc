@@ -287,6 +287,11 @@
     "Plug 'roxma/nvim-yarp'
     "Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'mattn/emmet-vim'
+    Plug 'nathanaelkane/vim-indent-guides'
+    " vim-indent-guides {{{2
+    let g:indent_guides_enable_on_vim_startup = 0
+    let g:indent_guides_guide_size = 1
+    " }}}
     call plug#end()
 " }}}
 " Russian keyboard {{{
