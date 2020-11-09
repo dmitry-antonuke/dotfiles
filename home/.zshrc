@@ -89,8 +89,12 @@ zinit light-mode for \
 zinit ice blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 
-autoload compinit
-compinit
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
 
 #zinit ice atinit'zmodload zsh/zprof' \
 #  atload'zprof | head -n 20; zmodload -u zsh/zprof'
