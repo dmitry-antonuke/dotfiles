@@ -24,6 +24,7 @@ export FZF_DEFAULT_OPTS='
 --color info:150,prompt:110,spinner:150,pointer:167,marker:174
 '
 
+setopt extendedglob
 unsetopt BG_NICE
 
 [[ -s $HOME/.zsh_aliases ]] && source ~/.zsh_aliases
