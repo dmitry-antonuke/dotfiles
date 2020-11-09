@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+cd $(dirname $0)
+
+for f in home/**/.*
+do
+    ln -s $(readlink -f $f) $HOME/
+done
