@@ -102,6 +102,7 @@ zinit light zdharma/fast-syntax-highlighting
 #zinit ice atinit'zmodload zsh/zprof' \
 #  atload'zprof | head -n 20; zmodload -u zsh/zprof'
 zinit light zsh-users/zsh-autosuggestions
+set ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 #zinit wait lucid for \
 #  romkatv/powerlevel10k
