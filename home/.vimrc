@@ -235,9 +235,9 @@
     map g* <Plug>(incsearch-nohl-g*)
     map g# <Plug>(incsearch-nohl-g#)
 
-		map /  <Plug>(incsearch-forward)
-		map ?  <Plug>(incsearch-backward)
-		map g/ <Plug>(incsearch-stay)
+    map /  <Plug>(incsearch-forward)
+    map ?  <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
 
     function! s:config_easyfuzzymotion(...) abort
       return extend(copy({
