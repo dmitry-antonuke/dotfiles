@@ -129,6 +129,8 @@ zinit wait lucid for \
   OMZP::fasd \
   OMZP::command-not-found
 
+CASE_SENSITIVE="true"
+
 setopt promptsubst
 
 PS1="> "
