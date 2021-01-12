@@ -42,21 +42,6 @@ bindkey '^x^e' edit-command-line
 #bindkey '^X^F' fasd-complete-f  # C-x C-f to do fasd-complete-f (only files)
 #bindkey '^X^D' fasd-complete-d  # C-x C-d to do fasd-complete-d (only directories)
 
-# SDKMAN!
-if [[ ! -s ~/.sdkman/bin/sdkman-init.sh ]]
-then
-  if read -q "INSTALL_SDKMAN?SDKMAN! is not installed. Do you want to install it? [yN]"
-  then
-    curl -s "https://get.sdkman.io" | bash
-  fi
-fi
-if [[ -s ~/.sdkman/bin/sdkman-init.sh ]]
-then
-  export SDKMAN_DIR="$HOME/.sdkman"
-  # Load sdkman only if it's called
-  alias -g sdk='unalias sdk; source $SDKMAN_DIR/bin/sdkman-init.sh; sdk'
-fi
-
 #POWERLEVEL9K_MODE='nerdfont-complete'
 #source  ~/powerlevel9k/powerlevel9k.zsh-theme
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(date time dir vcs anaconda newline status)
@@ -153,6 +138,21 @@ zinit pack"binary+keys" for fzf
 #zinit light Aloxaf/fzf-tab
 zinit snippet "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/zsh/fzf-zsh-completion.sh"
 #zstyle ':completion:*:*:*:default' menu yes select search
+
+# SDKMAN!
+
+if [[ ! -s ~/.sdkman/bin/sdkman-init.sh ]]
+then
+  if read -q "INSTALL_SDKMAN?SDKMAN! is not installed. Do you want to install it? [yN]"
+  then
+    curl -s "https://get.sdkman.io" | bash
+  fi
+fi
+if [[ -s ~/.sdkman/bin/sdkman-init.sh ]]
+then
+  export SDKMAN_DIR="$HOME/.sdkman"
+  zinit wait lucid src"$HOME/.sdkman/bin/sdkman-init.sh" for zdharma/null
+fi
 
 cd $HOME
 #zprof
