@@ -139,7 +139,10 @@
     set lazyredraw
 " }}}
 " File type autocmds {{{
-    autocmd BufNewFile,BufRead *.md set tabstop=2 shiftwidth=2 expandtab tw=72
+    augroup md
+        autocmd BufNewFile,BufRead *.md set tabstop=2 shiftwidth=2 expandtab tw=72
+        autocmd BufNewFile,BufRead *.md setlocal spell spelllang=en_us
+    augroup END
 " }}}
 " Plugins {{{1
     runtime macros/matchit.vim
