@@ -199,6 +199,7 @@
     "
     Plug 'tpope/vim-fugitive'
     " vim-fugitive {{{2
+    nnoremap <silent> <Space>g :G<CR>
     nnoremap <silent> <Space>w :Gwrite<CR>
     nnoremap <silent> <Space>r :Gread<CR>
     nnoremap <silent> <Space>cc :Gcommit<CR>
