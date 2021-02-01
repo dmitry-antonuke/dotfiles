@@ -116,7 +116,8 @@
 " }}}
 " Buffers {{{
     set hidden
-    nnoremap gd :bprevious<bar>split<bar>bnext<bar>bdelete<CR>
+    nnoremap <Leader>q :bprevious<bar>split<bar>bnext<bar>bdelete<CR>
+    nnoremap <Leader>s :update<CR>
 " }}}
 " Windows {{{
 "    map <C-h> <C-w>h
