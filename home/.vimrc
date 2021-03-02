@@ -237,7 +237,7 @@
     " startify {{{2
     let g:startify_change_to_dir = 0
     " }}}
-    Plug 'terryma/vim-multiple-cursors'
+    Plug 'mg979/vim-visual-multi'
 
     Plug 'easymotion/vim-easymotion'
     Plug 'haya14busa/incsearch.vim'
