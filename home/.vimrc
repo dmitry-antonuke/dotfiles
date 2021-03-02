@@ -222,7 +222,7 @@
     Plug 'tpope/vim-eunuch'
     Plug 'idanarye/vim-merginal'
     Plug 'airblade/vim-gitgutter'
-    Plug 'flazz/vim-colorschemes'
+    Plug 'dmitry-at-hyla/vim-colorschemes'
     Plug 'ryanoasis/vim-devicons'
     " vim-devicons {{{2
     let g:webdevicons_enable = 1
