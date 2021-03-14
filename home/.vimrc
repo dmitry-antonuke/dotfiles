@@ -325,6 +325,14 @@
     " vim-colorschemes {{{2
     colorscheme nord
     " }}}
+    " vim-startify {{{2
+    let g:startify_custom_header_quotes =
+        \ startify#fortune#predefined_quotes()
+        \ + [['Design is separating into things that can be composed.', '', '- Rich Hickey']]
+        \ + [['When you combine two pieces of data you get data.', 'When you combine two machines you get trouble.', '', '- Rich Hickey']]
+        \ + [['Nobody wants to program with mutable strings anymore,', 'why do you want to program with mutable collections?', '- Rich Hickey']]
+        \ + [['Eventually, with mutable objects you create an intractable mess. And encapsulation does not get rid of that. Encapsulation only means: "well I''m in charge of this mess".', '- Rich Hickey']]
+    " }}}
 " }}}
 " Russian keyboard {{{
     set keymap=russian-jcukenwin
