@@ -408,31 +408,6 @@
     map Ю >
 " }}}
 " Some fun stuff {{{
-" Copy operator
-nmap <silent> gc :set opfunc=CopyOp<CR>g@
-vmap <silent> gc :<C-U>call CopyOp(visualmode(), 1)<CR>
-
-function! CopyOp(type, ...)
-  let sel_save = &selection
-  let &selection = "inclusive"
-  let reg_save = @c
-
-  if a:0  " Invoked from Visual mode
-    silent exe "normal! `<" . a:type . "`>y"
-  elseif a:type == 'line'
-    silent exe "normal! '[V']y"
-  elseif a:type == 'block'
-    silent exe "normal! `[\<C-V>`]y"
-  else
-    silent exe "normal! `[v`]y"
-  endif
-
-  call system('clip.exe', @c)
-  echomsg 'Copied to clipboard'
-
-  let &selection = sel_save
-  let @c = reg_save
-endfunction
 
 " Morse operator
 nmap <silent> gm :set opfunc=MorseOp<CR>g@
