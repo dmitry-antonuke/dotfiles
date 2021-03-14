@@ -287,6 +287,7 @@
     """Plug 'pangloss/vim-javascript'
     Plug 'tpope/vim-fireplace'
     Plug 'junegunn/rainbow_parentheses.vim'
+    Plug 'guns/vim-sexp'
     "Plug 'guns/vim-clojure-static' " already in polyglot
     " javascript {{{2
     "let g:javascript_conceal_function             = "ƒ"
