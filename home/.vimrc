@@ -410,35 +410,8 @@
 " Some fun stuff {{{
 
 " Morse operator
-nmap <silent> gm :set opfunc=MorseOp<CR>g@
-vmap <silent> gm :<C-U>call MorseOp(visualmode(), 1)<CR>
-
-function! MorseOp(type, ...)
-  let sel_save = &selection
-  let &selection = "inclusive"
-  let reg_save = @c
-
-  if a:0  " Invoked from Visual mode
-    silent exe "normal! `<" . a:type . "`>y"
-  elseif a:type == 'line'
-    silent exe "normal! '[V']y"
-  elseif a:type == 'block'
-    silent exe "normal! `[\<C-V>`]y"
-  else
-    silent exe "normal! `[v`]y"
-  endif
-
-  silent exe "normal! :s"
-  call system('clip.exe', @c)
-  echomsg 'Copied to clipboard'
-
-  let &selection = sel_save
-  let @c = reg_save
-endfunction
-
-" Morse operator
-" nnoremap <silent> gm :set opfunc=Morse<cr>g@
-" vnoremap <silent> gm :<c-u>call Morse(visualmode(), 1)<cr>
+nnoremap <silent> gm :set opfunc=Morse<cr>g@
+vnoremap <silent> gm :<c-u>call Morse(visualmode(), 1)<cr>
 function! Morse(vt, ...)
     let [sl, sc] = getpos(a:0 ? "'<" : "'[")[1:2]
     let [el, ec] = getpos(a:0 ? "'>" : "']")[1:2]
