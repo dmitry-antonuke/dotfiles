@@ -144,6 +144,9 @@
         autocmd BufNewFile,BufRead *.md set tabstop=2 shiftwidth=2 expandtab tw=72
         autocmd BufNewFile,BufRead *.md setlocal spell spelllang=en_us
     augroup END
+    augroup clj
+        autocmd BufNewFile,BufRead *.clj RainbowParentheses
+    augroup END
 " }}}
 " Plugins {{{1
     runtime macros/matchit.vim
@@ -282,6 +285,9 @@
     " }}}
     """Plug 'posva/vim-vue'
     """Plug 'pangloss/vim-javascript'
+    Plug 'tpope/vim-fireplace'
+    Plug 'junegunn/rainbow_parentheses.vim'
+    "Plug 'guns/vim-clojure-static' " already in polyglot
     " javascript {{{2
     "let g:javascript_conceal_function             = "ƒ"
     "let g:javascript_conceal_null                 = "ø"
