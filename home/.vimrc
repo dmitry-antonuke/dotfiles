@@ -214,10 +214,10 @@
     nnoremap <silent> <Space>g :G<CR>
     nnoremap <silent> <Space>w :Gwrite<CR>
     nnoremap <silent> <Space>r :Gread<CR>
-    nnoremap <silent> <Space>cc :Gcommit<CR>
-    nnoremap <silent> <Space>ca :Gcommit -a<CR>
-    nnoremap <silent> <Space>c! :Gcommit --amend<CR>
-    nnoremap <silent> <Space>p :Gpush<CR>
+    nnoremap <silent> <Space>cc :Git commit<CR>
+    nnoremap <silent> <Space>ca :Git commit -a<CR>
+    nnoremap <silent> <Space>c! :Git commit --amend<CR>
+    nnoremap <silent> <Space>p :Git push<CR>
     " }}}
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
