@@ -318,6 +318,49 @@
     "    }}}
     "endif
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " coc {{{2
+    " Autocompletion mappings
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+    inoremap <silent><expr> <TAB>
+                \ pumvisible() ? "\<C-n>" :
+                \ <SID>check_back_space() ? "\<Tab>" :
+                \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<Tab>"
+
+    " Go to mappings
+    nmap <silent> Cd <Plug>(coc-definition)
+    nmap <silent> Ct <Plug>(coc-type-definition)
+    nmap <silent> Cp <Plug>(coc-implementation)
+    nmap <silent> Cr <Plug>(coc-references)
+
+    " Diagnostics navigation
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+    " Refactoring mappings
+    nmap CR <Plug>(coc-rename)
+    nmap CF <Plug>(coc-format)
+    xmap CF <Plug>(coc-format-selected)
+    nmap CA <Plug>(coc-codeaction)
+    xmap CA <Plug>(coc-codeaction-selected)
+    nmap CX <Plug>(coc-fix-current)
+
+    " Coc lists mappings
+    nnoremap <silent> Cld :<C-u>CocList diagnostics<cr>
+    nnoremap <silent> Cle :<C-u>CocList extensions<cr>
+    nnoremap <silent> Clc :<C-u>CocList commands<cr>
+    nnoremap <silent> Clo :<C-u>CocList outline<cr>
+    nnoremap <silent> Cls :<C-u>CocList -I symbols<cr>
+
+    " Show info mappings
+    nnoremap <silent> Ci :call CocAction('doHover')<CR>
+
+    " Highlight current identifier usage in current document
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+    " }}}
     "Plug 'roxma/nvim-yarp'
     "Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'mattn/emmet-vim'
