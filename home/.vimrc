@@ -225,6 +225,7 @@
     Plug 'tpope/vim-eunuch'
     Plug 'idanarye/vim-merginal'
     Plug 'airblade/vim-gitgutter'
+    Plug 'junegunn/gv.vim'
     Plug 'dmitry-at-hyla/vim-colorschemes'
     Plug 'ryanoasis/vim-devicons'
     " vim-devicons {{{2
