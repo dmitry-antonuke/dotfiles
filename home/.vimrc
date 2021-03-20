@@ -349,6 +349,7 @@
     nmap CA <Plug>(coc-codeaction)
     xmap CA <Plug>(coc-codeaction-selected)
     nmap CX <Plug>(coc-fix-current)
+    nmap Cx :CocFix<CR>
 
     " Coc lists mappings
     nnoremap <silent> Cld :<C-u>CocList diagnostics<cr>
