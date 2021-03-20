@@ -315,6 +315,8 @@
     " vim-easy-align {{{2
     xmap ga <Plug>(EasyAlign)
     nmap ga <Plug>(EasyAlign)
+    xmap gA <Plug>(LiveEasyAlign)
+    nmap gA <Plug>(LiveEasyAlign)
     " }}}
     "Plug 'hdiniz/vim-gradle'
 
