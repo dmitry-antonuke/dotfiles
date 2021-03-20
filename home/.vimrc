@@ -244,6 +244,7 @@
     let g:startify_change_to_dir = 0
     " }}}
     Plug 'mg979/vim-visual-multi'
+    Plug 'junegunn/vim-peekaboo'
 
     Plug 'easymotion/vim-easymotion'
     Plug 'haya14busa/incsearch.vim'
@@ -310,7 +311,11 @@
     "let g:javascript_conceal_arrow_function       = "⇒"
     " }}}
     Plug 'sheerun/vim-polyglot'
-    Plug 'godlygeek/tabular'
+    Plug 'junegunn/vim-easy-align'
+    " vim-easy-align {{{2
+    xmap ga <Plug>(EasyAlign)
+    nmap ga <Plug>(EasyAlign)
+    " }}}
     "Plug 'hdiniz/vim-gradle'
 
     "if has('nvim')
