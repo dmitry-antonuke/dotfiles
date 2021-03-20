@@ -320,6 +320,17 @@
     " }}}
     "Plug 'hdiniz/vim-gradle'
 
+    Plug 'junegunn/goyo.vim'
+    " goyo {{{2
+    nmap <F5> :Goyo<CR>
+    " }}}
+    Plug 'junegunn/limelight.vim'
+    " limelight {{{2
+    let g:limelight_conceal_ctermfg = '238'
+    autocmd! User GoyoEnter Limelight
+    autocmd! User GoyoLeave Limelight!
+    " }}}
+
     "if has('nvim')
     "    Plug 'Shougo/deoplete.nvim'
     "    deoplete {{{2
