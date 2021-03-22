@@ -1,0 +1,4 @@
+{
+  "java.home": "/home/dmitry/.sdkman/candidates/java/11.0.8.hs-adpt",
+  "java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok.jar -Xbootclasspath/a:/usr/local/share/lombok/lombok.jar"
+}
