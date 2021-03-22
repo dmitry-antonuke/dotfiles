@@ -2,12 +2,7 @@
 
 cd $(dirname $0)
 
-for d in home/**/*(/D)
+for f in home/**/.*
 do
-    mkdir -p $HOME/${d#home/}
-done
-
-for f in home/**/*(.D)
-do
-    ln -sf "${f:a}" $HOME/
+    ln -s "${f:a}" $HOME/
 done

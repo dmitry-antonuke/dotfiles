@@ -116,8 +116,7 @@
 " }}}
 " Buffers {{{
     set hidden
-    nnoremap <Leader>q :bprevious<bar>split<bar>bnext<bar>bdelete<CR>
-    nnoremap <Leader>s :update<CR>
+    nnoremap gd :bprevious<bar>split<bar>bnext<bar>bdelete<CR>
 " }}}
 " Windows {{{
 "    map <C-h> <C-w>h
@@ -144,9 +143,6 @@
         autocmd BufNewFile,BufRead *.md set tabstop=2 shiftwidth=2 expandtab tw=72
         autocmd BufNewFile,BufRead *.md setlocal spell spelllang=en_us
     augroup END
-    augroup clj
-        autocmd BufNewFile,BufRead *.clj RainbowParentheses
-    augroup END
 " }}}
 " Plugins {{{1
     runtime macros/matchit.vim
@@ -158,14 +154,6 @@
     " NERDTree {{{2
     " if NERDTree is on only:
     "autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
-
-    " Exit Vim if NERDTree is the only window left.
-    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-        \ quit | endif
-    " If another buffer tries to replace NERDTree, put in the other window, and bring back NERDTree.
-    autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-        \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
     nnoremap <silent> <F11> :NERDTreeToggle<CR>
     inoremap <silent> <F11> <Esc>:NERDTreeToggle<CR>
     let s:NERDTreeIndicatorMap = {
@@ -214,10 +202,10 @@
     nnoremap <silent> <Space>g :G<CR>
     nnoremap <silent> <Space>w :Gwrite<CR>
     nnoremap <silent> <Space>r :Gread<CR>
-    nnoremap <silent> <Space>cc :Git commit<CR>
-    nnoremap <silent> <Space>ca :Git commit -a<CR>
-    nnoremap <silent> <Space>c! :Git commit --amend<CR>
-    nnoremap <silent> <Space>p :Git push<CR>
+    nnoremap <silent> <Space>cc :Gcommit<CR>
+    nnoremap <silent> <Space>ca :Gcommit -a<CR>
+    nnoremap <silent> <Space>c! :Gcommit --amend<CR>
+    nnoremap <silent> <Space>p :Gpush<CR>
     " }}}
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
@@ -225,10 +213,7 @@
     Plug 'tpope/vim-eunuch'
     Plug 'idanarye/vim-merginal'
     Plug 'airblade/vim-gitgutter'
-    Plug 'junegunn/gv.vim'
-    Plug 'tpope/vim-rhubarb'
-    Plug 'junegunn/vim-github-dashboard'
-    Plug 'dmitry-at-hyla/vim-colorschemes'
+    Plug 'flazz/vim-colorschemes'
     Plug 'ryanoasis/vim-devicons'
     " vim-devicons {{{2
     let g:webdevicons_enable = 1
@@ -243,8 +228,7 @@
     " startify {{{2
     let g:startify_change_to_dir = 0
     " }}}
-    Plug 'mg979/vim-visual-multi'
-    Plug 'junegunn/vim-peekaboo'
+    Plug 'terryma/vim-multiple-cursors'
 
     Plug 'easymotion/vim-easymotion'
     Plug 'haya14busa/incsearch.vim'
@@ -282,10 +266,6 @@
 
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
-    " snippets {{{2
-    let g:UltiSnipsListSnippets="<F2>"
-    nnoremap <F2> :Snippets<cr>
-    " }}}
 
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     " vim-go {{{2
@@ -293,11 +273,6 @@
     " }}}
     """Plug 'posva/vim-vue'
     """Plug 'pangloss/vim-javascript'
-    Plug 'tpope/vim-fireplace'
-    Plug 'junegunn/rainbow_parentheses.vim'
-    Plug 'guns/vim-sexp'
-    Plug 'tpope/vim-sexp-mappings-for-regular-people'
-    "Plug 'guns/vim-clojure-static' " already in polyglot
     " javascript {{{2
     "let g:javascript_conceal_function             = "ƒ"
     "let g:javascript_conceal_null                 = "ø"
@@ -311,25 +286,8 @@
     "let g:javascript_conceal_arrow_function       = "⇒"
     " }}}
     Plug 'sheerun/vim-polyglot'
-    Plug 'junegunn/vim-easy-align'
-    " vim-easy-align {{{2
-    xmap ga <Plug>(EasyAlign)
-    nmap ga <Plug>(EasyAlign)
-    xmap gA <Plug>(LiveEasyAlign)
-    nmap gA <Plug>(LiveEasyAlign)
-    " }}}
+    Plug 'godlygeek/tabular'
     "Plug 'hdiniz/vim-gradle'
-
-    Plug 'junegunn/goyo.vim'
-    " goyo {{{2
-    nmap <F5> :Goyo<CR>
-    " }}}
-    Plug 'junegunn/limelight.vim'
-    " limelight {{{2
-    let g:limelight_conceal_ctermfg = '238'
-    autocmd! User GoyoEnter Limelight
-    autocmd! User GoyoLeave Limelight!
-    " }}}
 
     "if has('nvim')
     "    Plug 'Shougo/deoplete.nvim'
@@ -338,50 +296,6 @@
     "    }}}
     "endif
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " coc {{{2
-    " Autocompletion mappings
-    function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
-    inoremap <silent><expr> <TAB>
-                \ pumvisible() ? "\<C-n>" :
-                \ <SID>check_back_space() ? "\<Tab>" :
-                \ coc#refresh()
-    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<Tab>"
-
-    " Go to mappings
-    nmap <silent> Cd <Plug>(coc-definition)
-    nmap <silent> Ct <Plug>(coc-type-definition)
-    nmap <silent> Cp <Plug>(coc-implementation)
-    nmap <silent> Cr <Plug>(coc-references)
-
-    " Diagnostics navigation
-    nmap <silent> [g <Plug>(coc-diagnostic-prev)
-    nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-    " Refactoring mappings
-    nmap CR <Plug>(coc-rename)
-    nmap CF <Plug>(coc-format)
-    xmap CF <Plug>(coc-format-selected)
-    nmap CA <Plug>(coc-codeaction)
-    xmap CA <Plug>(coc-codeaction-selected)
-    nmap CX <Plug>(coc-fix-current)
-    nmap Cx :CocFix<CR>
-
-    " Coc lists mappings
-    nnoremap <silent> Cld :<C-u>CocList diagnostics<cr>
-    nnoremap <silent> Cle :<C-u>CocList extensions<cr>
-    nnoremap <silent> Clc :<C-u>CocList commands<cr>
-    nnoremap <silent> Clo :<C-u>CocList outline<cr>
-    nnoremap <silent> Cls :<C-u>CocList -I symbols<cr>
-
-    " Show info mappings
-    nnoremap <silent> Ci :call CocAction('doHover')<CR>
-
-    " Highlight current identifier usage in current document
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-    " }}}
     "Plug 'roxma/nvim-yarp'
     "Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'mattn/emmet-vim'
@@ -395,14 +309,6 @@
     call plug#end()
     " vim-colorschemes {{{2
     colorscheme nord
-    " }}}
-    " vim-startify {{{2
-    let g:startify_custom_header_quotes =
-        \ startify#fortune#predefined_quotes()
-        \ + [['Design is separating into things that can be composed.', '', '- Rich Hickey']]
-        \ + [['When you combine two pieces of data you get data.', 'When you combine two machines you get trouble.', '', '- Rich Hickey']]
-        \ + [['Nobody wants to program with mutable strings anymore,', 'why do you want to program with mutable collections?', '- Rich Hickey']]
-        \ + [['Eventually, with mutable objects you create an intractable mess. And encapsulation does not get rid of that. Encapsulation only means: "well I''m in charge of this mess".', '- Rich Hickey']]
     " }}}
 " }}}
 " Russian keyboard {{{
@@ -478,10 +384,62 @@
     map Ю >
 " }}}
 " Some fun stuff {{{
+" Copy operator
+nmap <silent> gc :set opfunc=CopyOp<CR>g@
+vmap <silent> gc :<C-U>call CopyOp(visualmode(), 1)<CR>
+
+function! CopyOp(type, ...)
+  let sel_save = &selection
+  let &selection = "inclusive"
+  let reg_save = @c
+
+  if a:0  " Invoked from Visual mode
+    silent exe "normal! `<" . a:type . "`>y"
+  elseif a:type == 'line'
+    silent exe "normal! '[V']y"
+  elseif a:type == 'block'
+    silent exe "normal! `[\<C-V>`]y"
+  else
+    silent exe "normal! `[v`]y"
+  endif
+
+  call system('clip.exe', @c)
+  echomsg 'Copied to clipboard'
+
+  let &selection = sel_save
+  let @c = reg_save
+endfunction
 
 " Morse operator
-nnoremap <silent> gm :set opfunc=Morse<cr>g@
-vnoremap <silent> gm :<c-u>call Morse(visualmode(), 1)<cr>
+nmap <silent> gm :set opfunc=MorseOp<CR>g@
+vmap <silent> gm :<C-U>call MorseOp(visualmode(), 1)<CR>
+
+function! MorseOp(type, ...)
+  let sel_save = &selection
+  let &selection = "inclusive"
+  let reg_save = @c
+
+  if a:0  " Invoked from Visual mode
+    silent exe "normal! `<" . a:type . "`>y"
+  elseif a:type == 'line'
+    silent exe "normal! '[V']y"
+  elseif a:type == 'block'
+    silent exe "normal! `[\<C-V>`]y"
+  else
+    silent exe "normal! `[v`]y"
+  endif
+
+  silent exe "normal! :s"
+  call system('clip.exe', @c)
+  echomsg 'Copied to clipboard'
+
+  let &selection = sel_save
+  let @c = reg_save
+endfunction
+
+" Morse operator
+" nnoremap <silent> gm :set opfunc=Morse<cr>g@
+" vnoremap <silent> gm :<c-u>call Morse(visualmode(), 1)<cr>
 function! Morse(vt, ...)
     let [sl, sc] = getpos(a:0 ? "'<" : "'[")[1:2]
     let [el, ec] = getpos(a:0 ? "'>" : "']")[1:2]
